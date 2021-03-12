@@ -1,13 +1,13 @@
 package serializers;
 
+import com.caucho.hessian.io.Hessian2StreamingInput;
+import com.caucho.hessian.io.Hessian2StreamingOutput;
+import data.media.MediaContent;
+
 import java.io.*;
 import java.lang.reflect.Array;
 
-import data.media.MediaContent;
-
-import com.caucho.hessian.io.*;
-
-public class Hessian
+public class HessianOrigin
 {
     public static void register(TestGroups groups)
     {
@@ -29,7 +29,7 @@ public class Hessian
 
 	    public HessianSerializer(Class<T> c) { clz = c; }
 
-            public String getName() { return "sofa-hessian-no-factory"; }
+            public String getName() { return "hessian"; }
 
             @SuppressWarnings("unchecked")
             public T deserialize(byte[] array) throws Exception
@@ -39,7 +39,7 @@ public class Hessian
 	        return (T) hin.readObject();
 	    }
 
-	    public byte[] serialize(T data) throws java.io.IOException
+	    public byte[] serialize(T data) throws IOException
 	    {
 	        ByteArrayOutputStream out = outputStream(data);
 	        Hessian2StreamingOutput hout = new Hessian2StreamingOutput(out);

@@ -34,6 +34,7 @@ public class MediaStreamBenchmark extends BenchmarkBase
         // Binary Formats; language-specific ones
         JavaManual.register(groups);
         Hessian.register(groups);
+        SofaHessian.register(groups);
         Kryo.register(groups);
         FastSerialization.register(groups);
         JBossSerialization.register(groups);
